@@ -12,7 +12,7 @@ let ground;
 let carretest;
 let backColor;
 let groundColor;
-let toggleButton;
+// let toggleButton;
 
 let W = window.innerWidth;
 let H = window.innerHeight;
@@ -42,9 +42,9 @@ function setup()
     sliderBackColor.position(W - 210 , H - 40);
     sliderGroundColor = createSlider(0, 255, 255, 1);
     sliderGroundColor.position(W - 210, H - 70);
-    toggleButton = createButton("(^.^)");
-    toggleButton.position(W/2, H - 50);
-    toggleButton.mousePressed(changeForm);
+    // toggleButton = createButton("(^.^)");
+    // toggleButton.position(W/2, H - 50);
+    // toggleButton.mousePressed(changeForm);
     ground = Bodies.rectangle(W/2, H - 100, W-10, 10, {isStatic : true});
     World.add(myWorld, ground);
     for (i = 0; i < 10; i++)
@@ -56,17 +56,12 @@ function setup()
     noStroke();
 }
 
-function changeForm()
-{
-    console.log("à coder");
-}
-
 function mouseDragged()
 {
     let friction = sliderFriction.value();
     let restitution = sliderRestitution.value();
     let size = sliderSize.value();
-    if (mouseY < H - 100 && Math.floor(frameRate())%2 == 0)
+    if (mouseY < H - 100)
     {
         if (bubblesOn)
         {
@@ -98,15 +93,15 @@ function draw()
     {
         rect(carres[i].position.x, carres[i].position.y, 100, 100);
     }
-    for (i in boxes)
-    {
-        fill(255);
-        boxes[i].show();
-    }
     for (j in bubbles)
     {
         fill(j%150, 10 + j%245, 10 + j%50);
         bubbles[j].show();
+    }
+    for (i in boxes)
+    {
+        fill(255);
+        boxes[i].show();
     }
 }
 
@@ -120,5 +115,6 @@ function changeForm()
     {
         bubblesOn = false;
     }
+    console.log(bubbles, boxes);
     boxesOn = !bubblesOn;
 }
